@@ -19,3 +19,8 @@ Route::get('/ticket/{ticket_id}', function ($ticket_id) {
     $ticket = App\Models\TicketRegistration::where('ticket_id', $ticket_id)->firstOrFail();
     return view('ticket', compact('ticket'));
 })->name('ticket.show');
+
+Route::get('/confirmation/{ticket_id}', function ($ticket_id) {
+    $ticket = App\Models\TicketRegistration::where('ticket_id', $ticket_id)->firstOrFail();
+    return view('confirmation', compact('ticket'));
+})->name('confirmation');

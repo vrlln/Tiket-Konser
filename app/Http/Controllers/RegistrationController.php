@@ -64,6 +64,6 @@ class RegistrationController extends Controller
         $snapToken = Snap::getSnapToken($params);
         $ticket->update(['snap_token' => $snapToken]);
 
-        return redirect()->route('payment', $ticket->ticket_id);
+        return redirect()->route('confirmation', $ticket->ticket_id);
     }
 }
