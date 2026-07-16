@@ -20,7 +20,19 @@ Route::get('/ticket/{ticket_id}', function ($ticket_id) {
     return view('ticket', compact('ticket'));
 })->name('ticket.show');
 
+Route::get('/ticket/{ticket_id}/download', [App\Http\Controllers\TicketController::class, 'download'])->name('ticket.download');
+
 Route::get('/confirmation/{ticket_id}', function ($ticket_id) {
     $ticket = App\Models\TicketRegistration::where('ticket_id', $ticket_id)->firstOrFail();
     return view('confirmation', compact('ticket'));
 })->name('confirmation');
+
+Route::get('/input-va/{ticket_id}', function ($ticket_id) {
+    $ticket = App\Models\TicketRegistration::where('ticket_id', $ticket_id)->firstOrFail();
+    return view('input-va', compact('ticket'));
+})->name('input.va');
+
+Route::get('/ticket-verify/{ticket_id}', function ($ticket_id) {
+    $ticket = App\Models\TicketRegistration::where('ticket_id', $ticket_id)->firstOrFail();
+    return view('verify', compact('ticket'));
+})->name('ticket.verify');

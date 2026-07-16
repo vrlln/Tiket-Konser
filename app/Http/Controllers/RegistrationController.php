@@ -61,7 +61,11 @@ class RegistrationController extends Controller
             ],
         ];
 
-        $snapToken = Snap::getSnapToken($params);
+        try {
+            $snapToken = Snap::getSnapToken($params);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal menghubungi Midtrans: ' . $e->getMessage());
+        }
         $ticket->update(['snap_token' => $snapToken]);
 
         return redirect()->route('confirmation', $ticket->ticket_id);
